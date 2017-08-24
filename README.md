@@ -1,7 +1,8 @@
 
 
 ## 介绍
-    项目是react-native开发的,用到了react-navigation做路由跳转；暂时功能有登录，注册，通讯录等。
+    项目是react-native开发的,用到了react-navigation做路由跳转；暂时功能有登录，注册，通讯录等。
+    服务端是基于node+koa2+mongodb搭建的。代码：https://github.com/Murrayee/m-server  
 
 ## 截图
   ![Image text](https://github.com/Murrayee/murray/blob/master/static/1.png)
