@@ -86,7 +86,7 @@ class Message extends Component {
 
             <View>
 
-                <Text>123123</Text>
+                <Text>3123123123123123123</Text>
             </View>
         );
     }

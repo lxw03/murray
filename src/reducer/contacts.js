@@ -1,30 +1,22 @@
 /**
  * Created by bear on 2017/7/23.
  */
-
-
-import *as types from '../constants/actionType'
+import  * as types from '../utils/constant';
 
 
 const init = {
-    msg:{},
-    userList: []
+    isFetching: false,
+    data: []
 
 }
 
 const contacts = (state = init, action) => {
 
     switch (action.type) {
-        case types.REQUEST_FETCH:
-            return {...state}
-        case types.RECEIVE_FETCH:
-            return {...state, msg: action.payload}
-
-        case types.GET_CTS_SUCCESS:
-            return {...state, userList: action.payload}
-
-        case types.GET_CTS_FAIL:
-            return {...state}
+        case types.REQUEST_CST_LIST:
+            return {...state,isFetching:true}
+        case types.RECEIVE_CST_LIST:
+            return {...state, data: action.data,isFetching:false}
 
 
         default:
