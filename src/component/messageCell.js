@@ -18,7 +18,7 @@ class MessageCell extends Component {
         if (data.remark === 'me') {
             differentStyle = {
                 flexDirection: 'row-reverse',
-                backgroundColor: '#92E649'
+                backgroundColor: '#CCE4FC'
             };
         } else {
             differentStyle = {
@@ -39,9 +39,12 @@ class MessageCell extends Component {
                 <View
                     style={[styles.contentView, {backgroundColor: differentStyle.backgroundColor}]}
                 >
-                    <Text style={styles.messageCellText}>{data.des}</Text>
+
+                        <Text style={styles.messageCellText}>{data.des}</Text>
+
                 </View>
                 <View style={styles.endBlankBlock} />
+
             </View>
         );
     }
@@ -83,7 +86,11 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     messageCellText: {
-        // fontSize: FontSize.Content
+
+
+        fontSize:12,
+        lineHeight:16,
+        // backgroundColor:"red"
     },
     avatar: {
         borderRadius: 4,
@@ -96,13 +103,14 @@ const styles = StyleSheet.create({
         padding: 4,
         paddingHorizontal: 8,
         overflow: 'hidden',
-        flex: 1,
+        flex: 2,
         margin: 5,
-        justifyContent: 'center'
+        justifyContent: 'center',
+
     },
     endBlankBlock: {
         margin: 5,
-        width: 50,
+        width: 80,
         height: 40
     }
 });

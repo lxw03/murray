@@ -162,6 +162,7 @@ class List extends Component {
 
         }
 
+
         this.setState({
             dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlob, sectionIDs, rowIDs),
 
@@ -198,8 +199,6 @@ class List extends Component {
                                   // console.log(index);
                                   Toast.info(letter, .5, null, false)
                               }}
-
-
             >
                 <View style={styles.letter}>
                     <Text style={styles.letterText}>{letter}</Text>
@@ -209,9 +208,7 @@ class List extends Component {
     }
 
     renderRow = (rowData, rowId) => {
-
         const {navigation} = this.props
-
         return (
             <TouchableOpacity
                 key={rowId}
@@ -258,7 +255,7 @@ class List extends Component {
 
     componentWillMount() {
 
-        //es6 排序
+        // // es6 排序
         // var arr1=[1,3,3,5,9,4,6,7];
         //
         // let s=new Set(arr1);
