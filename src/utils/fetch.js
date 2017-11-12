@@ -2,7 +2,7 @@
  * Created by bear on 2017/7/23.
  */
 
-import fetch from 'isomorphic-fetch'
+import fetch from 'axios'
 
 const base = 'http://localhost:3003/';
 
