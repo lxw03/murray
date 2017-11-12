@@ -8,7 +8,7 @@
 		"test": "jest"
 	},
 	"dependencies": {
-		"antd-mobile": "^1.4.2",
+		"antd-mobile": "^2.0.1-alpha.0",
 		"axios": "^0.15.3",
 		"isomorphic-fetch": "^2.2.1",
 		"lodash": "^4.17.4",

@@ -7,7 +7,7 @@ import {
     View, Image, TouchableOpacity, Modal, Text, ListView, Platform, Dimensions, StyleSheet, Alert, PanResponder
 } from 'react-native';
 import _ from 'lodash';
-import {Toast,RefreshControl} from 'antd-mobile'
+import {Toast} from 'antd-mobile'
 const {width, height} = Dimensions.get('window')
 const SECTIONHEIGHT = 30, ROWHEIGHT = 40
 //这是利用lodash的range和数组的map画出26个英文字母
@@ -277,17 +277,6 @@ class List extends Component {
     }
 
     render() {
-        const rcEl = (
-            <RefreshControl
-                refreshing={this.state.isRefreshing}
-                onRefresh={this.onRefresh}
-                tintColor="#ff0000"
-                title={this.state.title}
-                titleColor="black"
-                colors={['#ff0000', '#00ff00', '#0000ff']}
-                progressBackgroundColor="red"
-            />
-        );
 
         return (
             <View>
@@ -300,7 +289,7 @@ class List extends Component {
                     enableEmptySections={true}
                     initialListSize={500}
                     removeClippedSubviews={false}
-                    refreshControl={rcEl}
+
 
                 />
 
