@@ -6,16 +6,13 @@ import React, {Component} from 'react';
 import {
     View, Image, TouchableOpacity, Modal, Text, ListView, Platform, Dimensions, StyleSheet, Alert, PanResponder
 } from 'react-native';
-import _ from 'lodash';
+
 import {Toast} from 'antd-mobile'
+
 const {width, height} = Dimensions.get('window')
+
 const SECTIONHEIGHT = 30, ROWHEIGHT = 40
-//这是利用lodash的range和数组的map画出26个英文字母
-// const letters = _
-//     .range('A'.charCodeAt(0), 'Z'.charCodeAt(0) + 1)
-//     .map(n => String.fromCharCode(n).substr(0))
-// _.pull(letters,'O','V')//去掉o和V
-// const letters = ['☆', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#'];
+
 class List extends Component {
 
     constructor(props) {
@@ -289,11 +286,7 @@ class List extends Component {
                     enableEmptySections={true}
                     initialListSize={500}
                     removeClippedSubviews={false}
-
-
                 />
-
-
                 <View
                     style={styles.letters}
                     onLayout={(event) => this._onLayout(event)}

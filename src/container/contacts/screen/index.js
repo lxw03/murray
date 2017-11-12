@@ -5,17 +5,17 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
+import {styles} from '../stylesheet/index'
 
 import {
     View,
     Dimensions,
-    StyleSheet,
     Text
 } from 'react-native';
 import {Toast, ActivityIndicator} from 'antd-mobile'
 const {width, height} = Dimensions.get('window')
 import * as  contacts from "../../../action/contacts"
-import List from '../../../component/list'
+import List from '../../../component/contacts/list'
 @connect(
     state => {
         return {...state.contacts}
@@ -37,14 +37,13 @@ export default class Contacts extends React.Component {
 
         const {data, navigation} = this.props;
         return (
-            <View style={{backgroundColor: "#F0F1F1"}}>
+            <View >
 
                 {  data.length > 0 && <List data={data} navigation={navigation}/>}
 
             </View>
         );
     }
-
     componentWillReceiveProps(np) {
 
         // console.log(np)
@@ -65,14 +64,3 @@ export default class Contacts extends React.Component {
 
 }
 ;
-
-const styles = StyleSheet.create({
-    contentContainer: {
-        width: width,
-        backgroundColor: 'white',
-    },
-
-})
-
-
-

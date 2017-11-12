@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import {  ListView,ActivityIndicator} from 'antd-mobile'
 
+import List from '../../../component/common/sectionList'
 
 const data = [
     {
@@ -86,7 +87,7 @@ class Message extends Component {
 
             <View>
 
-                <Text>3123123123123123123</Text>
+                <List/>
             </View>
         );
     }
