@@ -14,8 +14,10 @@
         2 升级antd-mobile为v2；
         3 升级react-native为v0.5（升级v0.45版本以上需要编译器环境，具体请参考（https://reactnative.cn/blog.html））;
         4 修改@connect修饰器语法；
-        4 项目结构更改；
-            
+        5 项目结构更改；
+        6 新建分支 dev ，做为平时开发测试用 。
+        
+
 
 ## TODO
 
