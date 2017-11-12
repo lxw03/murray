@@ -19,7 +19,7 @@ import {
     ScrollView,
     TouchableOpacity
 } from 'react-native';
-
+import io from 'socket.io-client'
 import MessageCell from '../../component/messageCell'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AddIcon from 'react-native-vector-icons/Ionicons'
@@ -28,53 +28,56 @@ const emojiList = ['😅', '😂', '🙂', '🙃', '😉', '😘', '😗', '😜
 
 
 const data = [
-    {   remark:"me",
+    {
+        remark: "me",
         img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
         title: '李佳鑫',
         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
     },
     {
-        remark:"a",
+        remark: "a",
         img: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png',
         title: '李益',
         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
     },
     {
-        remark:"a",
+        remark: "a",
         img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
         title: '程远泰',
         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
     },
-    {   remark:"me",
+    {
+        remark: "me",
         img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
         title: '李佳鑫',
         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
     },
     {
-        remark:"a",
+        remark: "a",
         img: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png',
         title: '李益',
         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
     },
     {
-        remark:"a",
+        remark: "a",
         img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
         title: '程远泰',
         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
     },
-    {   remark:"me",
+    {
+        remark: "me",
         img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
         title: '李佳鑫',
         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
     },
     {
-        remark:"a",
+        remark: "a",
         img: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png',
         title: '李益',
         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
     },
     {
-        remark:"a",
+        remark: "a",
         img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
         title: '程远泰',
         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
@@ -92,24 +95,78 @@ class Chat extends Component {
     constructor(props) {
         super(props);
         this.diplayName = "Chat"
-        this.state = {
-            textInputHeight: 40,
-            inputValue: '',
-            refreshing: false
-        };
         const dataSource = new ListView.DataSource({
             rowHasChanged: (row1, row2) => row1 !== row2,
         });
         this.rData = {};
+        this._userReachEnd = true
+        this._userHasBeenInputed = false
         this.state = {
             dataSource: dataSource.cloneWithRows(this.genData()),
             isLoading: false,
+            textInputHeight: 40,
+            inputValue: '',
+            refreshing: false,
+            // _data: [
+            //     {   remark:"me",
+            //         img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
+            //         title: '李佳鑫',
+            //         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
+            //     },
+            //     {
+            //         remark:"a",
+            //         img: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png',
+            //         title: '李益',
+            //         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
+            //     },
+            //     {
+            //         remark:"a",
+            //         img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
+            //         title: '程远泰',
+            //         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
+            //     },
+            //     {   remark:"me",
+            //         img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
+            //         title: '李佳鑫',
+            //         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
+            //     },
+            //     {
+            //         remark:"a",
+            //         img: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png',
+            //         title: '李益',
+            //         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
+            //     },
+            //     {
+            //         remark:"a",
+            //         img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
+            //         title: '程远泰',
+            //         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
+            //     },
+            //     {   remark:"me",
+            //         img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
+            //         title: '李佳鑫',
+            //         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
+            //     },
+            //     {
+            //         remark:"a",
+            //         img: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png',
+            //         title: '李益',
+            //         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
+            //     },
+            //     {
+            //         remark:"a",
+            //         img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
+            //         title: '程远泰',
+            //         des: '爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶爱的卡到了卡就是大洛杉矶',
+            //     },
+            // ]
         };
-        this._userReachEnd=true
+
 
     }
+
     genData = (pIndex = 0) => {
-        const dataBlob = data;
+        let dataBlob = data;
         // for (let i = 0; i < NUM_ROWS; i++) {
         //     const ii = (pIndex * NUM_ROWS) + i;
         //     dataBlob[`${ii}`] = `row - ${ii}`;
@@ -124,13 +181,16 @@ class Chat extends Component {
             />
         )
     }
-    _scrollToBottom () {
+
+    _scrollToBottom() {
         let scrollProperties = this._listView.scrollProperties;
         console.log(scrollProperties)
         // 如果组件没有挂载完全，则不进行内容偏移
-        if (!scrollProperties.visibleLength) { return; }
+        if (!scrollProperties.visibleLength) {
+            return;
+        }
 
-       // 如果是刷新操作，则不进行滑动
+        // 如果是刷新操作，则不进行滑动
         if (!this._userReachEnd) {
             return;
         }
@@ -145,10 +205,42 @@ class Chat extends Component {
         setTimeout(() => {
             let offsetY = scrollProperties.contentLength - scrollProperties.visibleLength;
             this._listView.scrollTo({
-                y: offsetY > 0 ? offsetY  : 0,
-                // animated: this._userHasBeenInputed
+                y: offsetY > 0 ? offsetY : 0,
+                animated: this._userHasBeenInputed
             });
-        },  130);
+        }, this._userHasBeenInputed ? 0 : 130);
+    }
+
+    _onSubmitEditing = (event) => {
+
+        const {navigation}=this.props
+        const {state}=navigation
+        const username=state.params.name
+
+
+        console.log(username)
+
+
+        this._userHasBeenInputed = true
+
+        // console.log(this.state.inputValue)
+        data.push({
+            remark: "me",
+            img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
+            des: this.state.inputValue
+        })
+        let dataBlob = data
+
+
+
+
+        this.setState({
+                dataSource: this.state.dataSource.cloneWithRows(dataBlob),
+                inputValue: ''
+            }
+        );
+
+
     }
 
     render() {
@@ -183,7 +275,7 @@ class Chat extends Component {
                 <View style={styles.flexContainer}>
                     <View style={styles.leftIcon}>
                         {/*<Text>1</Text>*/}
-                        <Icon name="keyboard-voice" size={25} style={{color:'#b2b2b2',margin:7}}/>
+                        <Icon name="keyboard-voice" size={25} style={{color: '#b2b2b2', margin: 7}}/>
                     </View>
                     <View style={styles.cell}>
                         <TextInput
@@ -191,31 +283,30 @@ class Chat extends Component {
                                 height: Math.max(40, this.state.textInputHeight < 180 ? this.state.textInputHeight : 180)
                             }]}
                             returnKeyType="send"
-                            // multiline={true}
-                            // controlled={true}
-                            // underlineColorAndroid="transparent"
-
-                            // value={this.state.inputValue}
-                            // placeholder="Type here to send message"
-                            // // ios only
-                            // enablesReturnKeyAutomatically={true}
-                            // onContentSizeChange={
-                            //     (event) => {
-                            //         this.setState({textInputHeight: event.nativeEvent.contentSize.height});
-                            //     }
-                            // }
-                            // onChangeText={ (text) => {
-                            //     this.setState({ inputValue: text });
-                            // }}
-                            // onEndEditing={(event) => console.log("1")
-                            // }
-                            // onSubmitEditing={(event) =>console.log("2")
-                            // }
+                            multiline={false}
+                            controlled={true}
+                            blurOnSubmit={false}
+                            underlineColorAndroid="transparent"
+                            value={this.state.inputValue}
+                            placeholder="发送消息"
+                            // ios only
+                            enablesReturnKeyAutomatically={true}
+                            onContentSizeChange={
+                                (event) => {
+                                    // this.setState({textInputHeight: event.nativeEvent.contentSize.height});
+                                }
+                            }
+                            onChangeText={ (text) => {
+                                this.setState({inputValue: text});
+                            }}
+                            onEndEditing={(event) => console.log("编辑完成")
+                            }
+                            onSubmitEditing={this._onSubmitEditing}
                         />
                     </View>
                     <View style={styles.rightIcon}>
-                        <Icon name="tag-faces" size={25} style={{color:'#b2b2b2',margin:7,  }}/>
-                        <AddIcon name="ios-add-circle-outline" size={25} style={{color:'#b2b2b2',margin:7,}}/>
+                        <Icon name="tag-faces" size={25} style={{color: '#b2b2b2', margin: 7,}}/>
+                        <AddIcon name="ios-add-circle-outline" size={25} style={{color: '#b2b2b2', margin: 7,}}/>
                     </View>
                 </View>
             </View>
@@ -270,10 +361,10 @@ const styles = StyleSheet.create({
         flex: 1,
         borderWidth: 1,
         margin: 6,
-        borderRadius:4,
-        borderColor:"#d7d7d7",
-        fontSize:12,
-        paddingLeft:8
+        borderRadius: 4,
+        borderColor: "#d7d7d7",
+        fontSize: 12,
+        paddingLeft: 8
     },
     messageCell: {
         marginTop: 5,
@@ -311,7 +402,6 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         borderColor: "#d7d7d7",
         // marginTop: 50
-
 
 
     },

@@ -15,6 +15,8 @@ import {
 import { Tabs ,RefreshControl} from 'antd-mobile';
 
 
+import WebViewExample from './webView'
+
 const TabPane = Tabs.TabPane;
 
 function onChange(key) {
@@ -81,38 +83,40 @@ class Dynamic extends Component {
         );
         return (
             <View style={{ flex: 1 }}>
-                <Tabs defaultActiveKey="1" onChange={onChange} onTabClick={onTabClick}>
-                    <TabPane tab="选项卡一" key="1">
-                        {/*<ScrollView*/}
-                            {/*style={styles.scrollview}*/}
-                            {/*refreshControl={rcEl}*/}
-                        {/*>*/}
-                            {/*{rows}*/}
-                        {/*</ScrollView>*/}
-                    </TabPane>
-                    <TabPane tab="选项卡二" key="2">
-                        <ScrollView>
-                        <View style={{ alignItems: 'center', justifyContent: 'center', height: 1000 }}>
-                            <Text>选项卡二内容</Text>
-                        </View>
-                    </ScrollView>
-                    </TabPane>
-                    <TabPane tab="选项卡三" key="3">
-                        <ScrollView>
-                        <View style={{ alignItems: 'center', justifyContent: 'center', height: 1000 }}>
-                            <Text>选项卡三内容</Text>
-                        </View>
-                    </ScrollView>
-                    </TabPane>
-                    <TabPane tab="选项卡四" key="4">
-                        <ScrollView>
-                        <View style={{ alignItems: 'center', justifyContent: 'center', height: 1000 }}>
-                            <Text>选项卡四内容</Text>
-                        </View>
-                        </ScrollView>
-                    </TabPane>
 
-                </Tabs>
+                <WebViewExample/>
+                {/*<Tabs defaultActiveKey="1" onChange={onChange} onTabClick={onTabClick}>*/}
+                    {/*<TabPane tab="选项卡一" key="1">*/}
+                        {/*/!*<ScrollView*!/*/}
+                            {/*/!*style={styles.scrollview}*!/*/}
+                            {/*/!*refreshControl={rcEl}*!/*/}
+                        {/*/!*>*!/*/}
+                            {/*/!*{rows}*!/*/}
+                        {/*/!*</ScrollView>*!/*/}
+                    {/*</TabPane>*/}
+                    {/*<TabPane tab="选项卡二" key="2">*/}
+                        {/*<ScrollView>*/}
+                        {/*<View style={{ alignItems: 'center', justifyContent: 'center', height: 1000 }}>*/}
+                            {/*<Text>选项卡二内容</Text>*/}
+                        {/*</View>*/}
+                    {/*</ScrollView>*/}
+                    {/*</TabPane>*/}
+                    {/*<TabPane tab="选项卡三" key="3">*/}
+                        {/*<ScrollView>*/}
+                        {/*<View style={{ alignItems: 'center', justifyContent: 'center', height: 1000 }}>*/}
+                            {/*<Text>选项卡三内容</Text>*/}
+                        {/*</View>*/}
+                    {/*</ScrollView>*/}
+                    {/*</TabPane>*/}
+                    {/*<TabPane tab="选项卡四" key="4">*/}
+                        {/*<ScrollView>*/}
+                        {/*<View style={{ alignItems: 'center', justifyContent: 'center', height: 1000 }}>*/}
+                            {/*<Text>选项卡四内容</Text>*/}
+                        {/*</View>*/}
+                        {/*</ScrollView>*/}
+                    {/*</TabPane>*/}
+
+                {/*</Tabs>*/}
             </View>
         );
 
