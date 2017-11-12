@@ -1,16 +1,12 @@
 /**
  * Created by bear on 2017/7/23.
  */
-import {
-    Alert
-} from 'react-native'
+import {Alert} from 'react-native'
+import qs from 'qs'
+import  * as types from '../utils/constant';
+import axios from '../utils/fetch'
 
-import  * as types from '../constants/actionType';
-
-import {postFetch, getFetch} from '../utils/fetch'
 import {userApi} from '../utils/api'
-
-
 const requestFetch = () => ({
     type: types.REQUEST_FETCH
 
@@ -73,12 +69,9 @@ export const loginOut = (payload) => ({
 
 
 export const fetchSignIn = (data) => {
-    console.log(data)
-    "use strict";
     return dispatch => {
         dispatch(requestFetch())
-        setTimeout(() => {
-                postFetch(userApi.signIn, data)
+            axios.post(userApi.signIn, qs.stringify(data))
                     .then(res => res.json())
                     .then(result => {
                         console.log(result)
@@ -103,16 +96,12 @@ export const fetchSignIn = (data) => {
                         Alert.alert("请求不成功！")
                         console.log(err)
                     })
-
-            }
-            , 2000);
     }
 }
 export const fetchSignUp = (data) => {
-    "use strict";
     return dispatch => {
         dispatch(requestFetchReg())
-        postFetch(userApi.signUp, data)
+        axios.post(userApi.signUp, qs.stringify(data))
             .then(res => res.json())
             .then(result => {
                 dispatch(receiveFetchReg(result))

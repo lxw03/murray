@@ -3,7 +3,7 @@
  */
 
 
-import *as types from '../constants/actionType'
+import  * as types from '../utils/constant';
 
 
 const init = {

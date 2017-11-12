@@ -1,8 +1,6 @@
 /**
- * Created by bear on 2017/7/19.
+ * Created by bear on 2017/11/12.
  */
-
-
 
 //登录
 export const REQUEST_FETCH = 'REQUEST_FETCH';
@@ -27,6 +25,6 @@ export const FETCH_FAIL_REG='FETCH_FAIL_REG'
 
 //联系人
 
-export const GET_CTS_SUCCESS='GET_CTS_SUCCESS'
+export const REQUEST_CST_LIST='REQUEST_CST_LIST'
 
-export const GET_CTS_FAIL='GET_CTS_FAIL'
+export const RECEIVE_CST_LIST='RECEIVE_CST_LIST'

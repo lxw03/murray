@@ -2,63 +2,47 @@
  * Created by bear on 2017/7/14.
  */
 
-import React, {Component} from 'react';
-import {
-    View, Dimensions, StyleSheet,Text
-} from 'react-native';
-import _ from 'lodash';
+import React from 'react';
 import {connect} from 'react-redux'
-import  {fetchCts} from "../../../action/contacts"
-import List from '../../../component/list'
+import {bindActionCreators} from 'redux'
+
+import {
+    View,
+    Dimensions,
+    StyleSheet,
+    Text
+} from 'react-native';
 import {Toast, ActivityIndicator} from 'antd-mobile'
 const {width, height} = Dimensions.get('window')
-class Contacts extends Component {
+import * as  contacts from "../../../action/contacts"
+import List from '../../../component/list'
+@connect(
+    state => {
+        return {...state.contacts}
+    },
+    dispatch => bindActionCreators({...contacts}, dispatch)
+)
+export default class Contacts extends React.Component {
     constructor(props) {
         super(props);
 
     }
 
-
-    componentWillMount() {
-        const {dispatch} = this.props
-        dispatch(fetchCts())
-
-    }
-
-
     componentDidMount() {
-
+        const {fetchCts} = this.props
+        fetchCts()
     }
 
     render() {
 
-        const {contacts, navigation} = this.props;
-        const {userList} = contacts;
-        console.log(userList)
+        const {data, navigation} = this.props;
+        return (
+            <View style={{backgroundColor: "#F0F1F1"}}>
 
-        if (userList.length > 0) {
+                {  data.length > 0 && <List data={data} navigation={navigation}/>}
 
-            return (
-                <View style={{backgroundColor: "#F0F1F1"}}>
-
-                    <List data={userList} navigation={navigation}/>
-
-                </View>
-            );
-
-        } else {
-            return (
-                <View style={{flex: 1, backgroundColor: "#F0F1F1"}}>
-                    <Text style={{height:10}}></Text>
-                    <ActivityIndicator style={{
-                            marginTop:10
-                        }}/>
-
-                </View>
-            );
-        }
-
-
+            </View>
+        );
     }
 
     componentWillReceiveProps(np) {
@@ -90,15 +74,5 @@ const styles = StyleSheet.create({
 
 })
 
-const mapStateToProps = (state) => {
-    "use strict";
 
 
-    return {
-        ...state,
-        userList: state.userList
-    }
-}
-
-
-export default connect(mapStateToProps)(Contacts)

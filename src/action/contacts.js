@@ -1,61 +1,38 @@
 /**
  * Created by bear on 2017/7/23.
  */
-import {
-    Alert
-} from 'react-native'
-
-import  * as types from '../constants/actionType';
-
-import {postFetch, getFetch} from '../utils/fetch'
+import {Alert} from 'react-native'
+import  * as types from '../utils/constant';
+import axios from '../utils/fetch'
 import {ctsApi} from '../utils/api'
 
 
-const requestFetch = () => ({
-    type: types.REQUEST_FETCH
+
+const requestCsList = () => ({
+    type: types.REQUEST_CST_LIST
 
 });
-const receiveFetch = (payload) => ({
 
-    type: types.RECEIVE_FETCH,
 
-    payload: payload
+const receiveCsList= (data) => ({
+
+    type: types.RECEIVE_CST_LIST,
+    data
 
 })
 
-const fetchSuccess = (payload) => ({
-    type: types.GET_CTS_SUCCESS,
-    payload:payload
-})
-const fetchFail = () => ({
-    type: types.GET_CTS_FAIL,
-})
 
 
 export const fetchCts = () => {
     "use strict";
     return dispatch => {
-        dispatch(requestFetch())
-        postFetch(ctsApi.cts, {})
-            .then(res => res.json())
-            .then(result => {
-                // console.log(result)
-
-                dispatch(receiveFetch(result))
-                if (result.success) {
-                    dispatch(fetchSuccess(result.data))
-
-                } else {
-
-                    dispatch(fetchFail())
-                    const msg = result.message
-
-                    Alert.alert(msg)
-                }
+        dispatch(requestCsList())
+        axios.post(ctsApi.cts)
+            .then(res => {
+                let data=res.data.data
+                dispatch(receiveCsList(data))
             })
-            .catch(err => {
-
-                dispatch(fetchFail())
+            .catch(error => {
                 Alert.alert("请求不成功！")
             })
 

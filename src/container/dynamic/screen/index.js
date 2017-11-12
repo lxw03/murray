@@ -12,7 +12,7 @@ import {
     TouchableWithoutFeedback
 } from 'react-native';
 
-import { Tabs ,RefreshControl} from 'antd-mobile';
+import { Tabs} from 'antd-mobile';
 
 
 import WebViewExample from './webView'
@@ -70,17 +70,7 @@ class Dynamic extends Component {
         const rows = this.state.rowData.map((row, ii) => {
             return <Row key={ii} data={row} onClick={this.onClick} />;
         });
-        const rcEl = (
-            <RefreshControl
-                refreshing={this.state.isRefreshing}
-                onRefresh={this.onRefresh}
-                tintColor="#ff0000"
-                title={this.state.title}
-                titleColor="black"
-                colors={['#ff0000', '#00ff00', '#0000ff']}
-                progressBackgroundColor="red"
-            />
-        );
+
         return (
             <View style={{ flex: 1 }}>
 

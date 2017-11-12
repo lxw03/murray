@@ -46,110 +46,48 @@ class Message extends Component {
     constructor(props) {
         super(props);
         this.diplayName = "Message"
-        const dataSource = new ListView.DataSource({
-            rowHasChanged: (row1, row2) => row1 !== row2,
-        });
-        this.rData = {};
-        this.state = {
-            dataSource: dataSource.cloneWithRows(this.genData()),
-            isLoading: false,
-        };
-    }
-    genData = (pIndex = 0) => {
-        const dataBlob = {};
-        for (let i = 0; i < NUM_ROWS; i++) {
-            const ii = (pIndex * NUM_ROWS) + i;
-            dataBlob[`${ii}`] = `row - ${ii}`;
-        }
-        return dataBlob;
-    }
 
-    onEndReached = (_event) => {
-        // load new data
-        // console.log('reach end', event);
-        this.setState({ isLoading: true });
-        setTimeout(() => {
-            this.rData = {
-                ...this.rData,
-                ...this.genData(++pageIndex),
-            };
-            this.setState({
-                dataSource: this.state.dataSource.cloneWithRows(this.rData),
-                isLoading: false,
-            });
-        }, 1000);
     }
 
     render() {
         const {navigation} = this.props
-        const separator = (sectionID, rowID) => (
-            <View
-                key={`${sectionID}-${rowID}`}
-                style={{
-                    backgroundColor: '#F5F5F9',
-                    height: 1,
-                    borderStyle: 'solid',
-                    borderTopWidth: 1,
-                    borderTopColor: '#ECECED',
-                    borderBottomWidth: 1,
-                    borderBottomColor: '#ECECED',
-                }}
-            />
-        );
-        const row = (_rowData, sectionID, rowID, highlightRow = (_sId, _rId) => {}) => {
-            if (index < 0) {
-                index = data.length - 1;
-            }
-            const obj = data[index--];
-            return (
-                <View key={rowID} style={{borderBottomWidth:1,borderBottomColor:"#ccc"}}>
-                    <TouchableHighlight
-                        underlayColor={'rgba(100,100,100,0.2)'}
-                        style={[{ padding: 8, backgroundColor: 'white' }]}
-                        onPress={() => {
-                            highlightRow(sectionID, rowID);
-                            navigation.navigate('chat', {name: obj.title})
-                        }}
-                    >
-                        <View>
-                            <View style={[{ flexDirection: 'row' }]}>
-                                <Image style={[{ height: 40, width: 40, marginRight: 8 ,backgroundColor:`rgb(${Math.random(0,255)},${Math.random(0,255)},${Math.random(0,255)})`}]} source={{ }} />
-                                <View>
-                                    <Text>{obj.title}</Text>
-                                    <Text style={{height:6}}>{}</Text>
-                                    <Text style={[{ fontSize: 12, color: '#ccc' }]}>{obj.des}</Text>
-                                </View>
-                            </View>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-            );
-        };
-        const  Loading=()=>{
 
-            return (
-                <View>
-                    <ActivityIndicator color="#fff"/>
-                </View>
-            )
+        // const row = (_rowData, sectionID, rowID, highlightRow = (_sId, _rId) => {}) => {
+        //     if (index < 0) {
+        //         index = data.length - 1;
+        //     }
+        //     const obj = data[index--];
+        //     return (
+        //         <View key={rowID} style={{borderBottomWidth:1,borderBottomColor:"#ccc"}}>
+        //             <TouchableHighlight
+        //                 underlayColor={'rgba(100,100,100,0.2)'}
+        //                 style={[{ padding: 8, backgroundColor: 'white' }]}
+        //                 onPress={() => {
+        //                     highlightRow(sectionID, rowID);
+        //                     navigation.navigate('chat', {name: obj.title})
+        //                 }}
+        //             >
+        //                 <View>
+        //                     <View style={[{ flexDirection: 'row' }]}>
+        //                         <Image style={[{ height: 40, width: 40, marginRight: 8 ,backgroundColor:`rgb(${Math.random(0,255)},${Math.random(0,255)},${Math.random(0,255)})`}]} source={{ }} />
+        //                         <View>
+        //                             <Text>{obj.title}</Text>
+        //                             <Text style={{height:6}}>{}</Text>
+        //                             <Text style={[{ fontSize: 12, color: '#ccc' }]}>{obj.des}</Text>
+        //                         </View>
+        //                     </View>
+        //                 </View>
+        //             </TouchableHighlight>
+        //         </View>
+        //     );
+        // };
 
-
-        }
-
-        const loadingTxt = this.state.isLoading ? Loading :"我是有底线的";
         return (
-            <ListView
-                dataSource={this.state.dataSource}
-                renderFooter={() => <Text style={{ padding: 15, textAlign: 'center' }}> {loadingTxt} </Text>}
-                renderRow={row}
-                // renderSeparator={separator}
-                pageSize={4}
-                scrollRenderAheadDistance={500}
-                scrollEventThrottle={200}
-                onEndReached={this.onEndReached}
-                onEndReachedThreshold={10}
-                removeClippedSubviews={false}
-            />
+
+            <View>
+
+                <Text>3123123123123123123</Text>
+            </View>
         );
     }
 }
