@@ -483,19 +483,9 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD:ios/默里.xcodeproj/project.pbxproj
-		099344161FB7031900FD2F7B /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				7F260E340BFB4E5DB10EE354 /* libRNVectorIcons.a */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		09CA62CB1F28652F00FA82C5 /* Products */ = {
-=======
+
 		0998D70B1FB82112007567AF /* Recovered References */ = {
->>>>>>> dev:ios/murray.xcodeproj/project.pbxproj
+
 			isa = PBXGroup;
 			children = (
 				83A9998171E34EAF892663C2 /* libRNVectorIcons.a */,
@@ -630,13 +620,10 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* murrayTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
-<<<<<<< HEAD:ios/默里.xcodeproj/project.pbxproj
-				6B146139A4C74FF9912F7E09 /* Resources */,
-				099344161FB7031900FD2F7B /* Recovered References */,
-=======
+
 				8CC606044250447E97756E3B /* Resources */,
 				0998D70B1FB82112007567AF /* Recovered References */,
->>>>>>> dev:ios/murray.xcodeproj/project.pbxproj
+
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
